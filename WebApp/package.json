@@ -1,0 +1,16 @@
+{
+  "name": "GPS-tracking-device",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {},
+  "author": "Khang",
+  "license": "ISC"
+}
