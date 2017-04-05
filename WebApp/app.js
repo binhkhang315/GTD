@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var serverIP = require('./serverIPAddress');
 var bodyParser = require('body-parser');
-var fs = require('fs');
+var net = require('net');
 
 app.use(bodyParser.json());
 // bodyParser.raw();
@@ -22,3 +22,26 @@ app.set('port', (process.env.PORT || 3210));
 var server = app.listen(app.get('port'), ipAddress, function () {
     console.log('Listening to:  ' + ipAddress + ':' + app.get('port'));
 });
+
+net.createServer(function(sock) {
+    
+    // We have a connection - a socket object is assigned to the connection automatically
+    console.log('CONNECTED: ' + sock.remoteAddress +':'+ sock.remotePort);
+    var chunks = {};
+    
+    // Add a 'data' event handler to this instance of socket
+    sock.on('data', function(data) {
+        console.log('DATA ' + sock.remoteAddress + ': ' + data);
+        // Write the data back to the socket, the client will receive it as data from the server
+        sock.write('You said "' + data + '"');
+        
+    });
+    
+    // Add a 'close' event handler to this instance of socket
+    sock.on('close', function(data) {
+        console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort);
+    });
+    
+}).listen(8080, ipAddress);
+
+
