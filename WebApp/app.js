@@ -18,7 +18,10 @@ app.use(express.static('public'));
 
 app.use('/', require('./route/index.js'));
 
-app.set('port', (process.env.PORT || 3210));
+app.set('port', (process.env.PORT || 80));
 var server = app.listen(app.get('port'), ipAddress, function () {
     console.log('Listening to:  ' + ipAddress + ':' + app.get('port'));
 });
+
+
+
