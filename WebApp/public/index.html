@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <style>
         #map {
             height: 400px;
@@ -13,42 +12,15 @@
 
 <body>
     <h3>My Google Maps Demo</h3>
-    <button id="hide">Hide</button>
-    <button id="show">Show</button>
     <div id="map"></div>
     <script>
-        var location;
-        var uluru;
-        var map;
-        var marker;
-
-        $(document).ready(function () {
-            $.ajax({
-                url: 'http://192.168.1.156:3210/location',
-                type: 'GET',
-                success: function (data) {
-                    location.lat = data.latitude;
-                    location.lng = data.longitude;
-                    uluru = location;
-                    marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(location.lat, location.lng),
-                    map: map
-                });
-                },
-                error: function (data) {
-                    alert('woops!'); //or whatever
-                }
-            });
-        });
-        function initMap(location, ) {
-            location.lat = 10.851648;
-            location.lng = 106.743813;
-            var uluru = location;
-            map = new google.maps.Map(document.getElementById('map'), {
+        function initMap() {
+            var uluru = { lat: -25.363, lng: 131.044 };
+            var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
                 center: uluru
             });
-            marker = new google.maps.Marker({
+            var marker = new google.maps.Marker({
                 position: uluru,
                 map: map
             });
