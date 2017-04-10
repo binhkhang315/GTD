@@ -3,6 +3,7 @@ var app = express();
 var serverIP = require('./serverIPAddress');
 var bodyParser = require('body-parser');
 var net = require('net');
+var path = require('path');
 
 app.use(bodyParser.json());
 // bodyParser.raw();
@@ -14,6 +15,7 @@ var ipAddress = serverIP.getIP();
 
 app.set('view engine', 'jade');
 //register static directory
+// app.set('view', path.join(__dirname, '/public'));
 app.use(express.static('public'));
 
 app.use('/', require('./route/index.js'));
