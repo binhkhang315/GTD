@@ -5,11 +5,14 @@ var path = require('path');
 var fs = require('fs');
 
 router.get('/index', function (req, res) {
-    res.sendFile('index.html', { root: path.join(__dirname, 'public') })
+    // console.log(path.join(__dirname, 'public'));
+    res.sendFile('index.html', { root: '../WebApp/public' });
 });
 
 router.get('/location', function (req, res) {
-    res.send({ latitude: 106.100, longitude: 10.743813 });
+    console.log("Get request location");
+    
+    res.send({ latitude: 10.851648, longitude: 106.743813 });
 });
 
 router.get('/updateGPS', function (req, res) {
