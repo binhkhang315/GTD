@@ -10,8 +10,11 @@
     <script>
         var app = angular.module("myApp", ['ngMap']);
 
-        app.controller("mapController", function ($scope, $http) {
-            $http.get('/location')
+        app.controller("mapController", function ($scope, $http, $interval) {
+            
+            $scope.test = 0;
+            $interval(function(){
+                $http.get('/location')
                 .success(function (data, status, headers, config) {
                     console.log(data.latitude);
                     console.log(data.longitude);
@@ -19,7 +22,7 @@
                 })
                 .error(function (data, status, header, config) {
                 });
-                
+            }, 1000);
         })
     </script>
 </head>
@@ -28,7 +31,7 @@
     <ng-map center={{address}} zoom="4">
         <marker position={{address}} title="Hello World!"></marker>
     </ng-map>
-    <h3>{{address}}</h3>
+    <h3>Test:{{test}} </h3>
 </body>
 
 </html>
